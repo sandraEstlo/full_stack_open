@@ -1,8 +1,8 @@
 const Content = ({parts}) => {
     return (
         <>
-            {parts.map(p =>
-                <p>{p.part}: {p.exercices}</p>
+            {parts.map(part =>
+                <p>{part.name}: {part.exercices}</p>
             )}
         </>
     )
