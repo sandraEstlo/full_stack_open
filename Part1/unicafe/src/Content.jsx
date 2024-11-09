@@ -1,9 +1,7 @@
-const Content = ({parts}) => {
+const Content = ({type, result}) => {
     return (
         <>
-            {parts.map(part =>
-                <p>{part.name}: {part.exercices}</p>
-            )}
+            <p>{type}: {result}</p>
         </>
     )
 }
