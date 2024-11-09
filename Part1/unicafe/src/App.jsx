@@ -1,4 +1,4 @@
-import React, {useState, button} from "react";
+import React, {useState} from "react";
 import Statics from "./Statics";
 
 const App = () => {
