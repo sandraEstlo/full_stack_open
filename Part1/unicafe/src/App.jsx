@@ -1,5 +1,5 @@
 import React, {useState, button} from "react";
-import Results from "./Result";
+import Statics from "./Statics";
 
 const App = () => {
 
@@ -11,13 +11,26 @@ const App = () => {
   const handleNeutralClick = () => setNeutral(neutral + 1)
   const handleBadClick = () => setBad(bad + 1)
 
+  const total = good + neutral + bad;
+  const average = (good - bad) /total;
+  const positive = (good / total) *100;
+
+  const props = [
+    {type:"Good", result: good},
+    {type:"Neutral", result: neutral},
+    {type:"Bad", result: bad},
+    {type:"Total", result: total},
+    {type:"Average", result: average},
+    {type:"Positive", result: positive}
+  ]
+
   return (
     <div>
       <h1>Give Feedback</h1>
       <button onClick={handleGoodClick}>Good</button>
       <button onClick={handleNeutralClick}>Neutral</button>
       <button onClick={handleBadClick}>Bad</button>
-      <Results good={good} neutral={neutral} bad={bad}></Results>
+      <Statics props = {props}></Statics>
     </div>
   )
 }
