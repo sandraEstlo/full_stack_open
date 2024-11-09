@@ -2,8 +2,6 @@ import { useState} from 'react'
 
 function App() {
 
-  const [index, setIndex] = useState(0)
-
   const anecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
@@ -15,18 +13,37 @@ function App() {
     'The only way to go fast, is to go well.'
   ]
 
+  const [index, setIndex] = useState(0)
+  const [points, setPoints] = useState(Array(anecdotes.length).fill(0));
+
   const handleNextClick = () => {
     setIndex(Math.floor(Math.random() * (anecdotes.length)));
   }
 
+  const indexWithMaxVotes = () => {
+    let max = Math.max(...points);
+    return points.indexOf(max);
+  }
+
+  const handlePointClick = () => {
+    const newPoints = [...points];
+    newPoints[index] += 1;
+    setPoints(newPoints);
+  }
+
   return (
-    
     <>
-      <h1>{anecdotes[index]}</h1> 
+      <h1>Anecdote of the day</h1>
+      <h2>{anecdotes[index]}</h2> 
+      <p>Has {points[index]} votes</p>
       <button onClick={handleNextClick}>next anecdote</button>
+      <button onClick={handlePointClick}>vote</button>
+      
+      <h1>Anecdote with most votes</h1>
+      <h2>{anecdotes[indexWithMaxVotes()]}</h2>
+      <p>Has {points[indexWithMaxVotes()]} votes</p>
     </>
   )
-
 }
 
 export default App
